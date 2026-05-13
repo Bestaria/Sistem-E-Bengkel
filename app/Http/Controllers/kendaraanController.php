@@ -9,9 +9,8 @@ class KendaraanController extends Controller
 {
     public function index()
     {
-        $kendaraan = Kendaraan::all();
-
-        return view('kendaraan.index', compact('kendaraan'));
+        $data = Kendaraan::all();
+        return view('kendaraan.index', compact('data'));
     }
 
     public function create()
@@ -23,8 +22,7 @@ class KendaraanController extends Controller
     {
         Kendaraan::create($request->all());
 
-        return redirect('/kendaraan')
-            ->with('success', 'Data berhasil ditambahkan');
+        return redirect('/kendaraan');
     }
 
     public function edit($id)
@@ -40,8 +38,7 @@ class KendaraanController extends Controller
 
         $kendaraan->update($request->all());
 
-        return redirect('/kendaraan')
-            ->with('success', 'Data berhasil diupdate');
+        return redirect('/kendaraan');
     }
 
     public function destroy($id)
@@ -50,7 +47,6 @@ class KendaraanController extends Controller
 
         $kendaraan->delete();
 
-        return redirect('/kendaraan')
-            ->with('success', 'Data berhasil dihapus');
+        return redirect('/kendaraan');
     }
 }
