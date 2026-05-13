@@ -9,12 +9,12 @@
 
     <style>
         body {
-            background: #f0fdf4;
+            background: #f4f7fb;
             font-family: 'Segoe UI', sans-serif;
         }
 
         .navbar {
-            background: linear-gradient(135deg, #166534, #22c55e);
+            background: linear-gradient(135deg, #0f172a, #1e3a8a);
         }
 
         .navbar-brand {
@@ -30,18 +30,18 @@
         }
 
         .table thead {
-            background: #16a34a;
+            background: #1e3a8a;
             color: white;
         }
 
         .btn-add {
-            background: #22c55e;
+            background: #0d6efd;
             color: white;
             border-radius: 10px;
         }
 
         .btn-edit {
-            background: #84cc16;
+            background: #f59e0b;
             color: white;
         }
 
@@ -84,6 +84,7 @@
                         <th>Nama Pemilik</th>
                         <th>Merk Kendaraan</th>
                         <th>Keluhan</th>
+                        <th width="180">Aksi</th>
                     </tr>
                 </thead>
 
@@ -97,6 +98,28 @@
                         <td>{{ $item->nama_pemilik }}</td>
                         <td>{{ $item->merk_kendaraan }}</td>
                         <td>{{ $item->keluhan }}</td>
+
+                        <td class="d-flex gap-2">
+
+                            <a href="/kendaraan/{{ $item->id }}/edit"
+                                class="btn btn-edit btn-sm">
+                                Edit
+                            </a>
+
+                            <form action="/kendaraan/{{ $item->id }}" method="POST"
+                                onsubmit="return confirm('Hapus kendaraan dari antrean?')">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit"
+                                    class="btn btn-delete btn-sm">
+                                    Hapus
+                                </button>
+
+                            </form>
+
+                        </td>
                     </tr>
 
                     @endforeach
