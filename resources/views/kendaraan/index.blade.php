@@ -9,103 +9,45 @@
 
     <style>
         body {
-            background: linear-gradient(to bottom right, #e8f5e9, #f1f8f4);
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
+            background: #f0fdf4;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         .navbar {
-            background: #7bc47f;
-            padding: 15px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, #166534, #22c55e);
         }
 
         .navbar-brand {
-            font-weight: bold;
-            font-size: 24px;
-            color: white !important;
-            letter-spacing: 1px;
-        }
-
-        .main-card {
-            background: white;
-            border-radius: 25px;
-            padding: 35px;
-            margin-top: 50px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.07);
-            border: 2px solid #d9f2dd;
-        }
-
-        .title {
-            color: #2f5d34;
             font-weight: 700;
+            color: white !important;
         }
 
-        .btn-add {
-            background: #8ed99b;
-            color: #1f3b23;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 14px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-add:hover {
-            background: #74c684;
-        }
-
-        .table {
-            border-radius: 15px;
-            overflow: hidden;
+        .card-box {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 30px;
         }
 
         .table thead {
-            background: #9ed8a3;
-            color: #234227;
+            background: #16a34a;
+            color: white;
         }
 
-        .table tbody tr {
-            transition: 0.2s;
-        }
-
-        .table tbody tr:hover {
-            background: #f1fff3;
-            transform: scale(1.01);
+        .btn-add {
+            background: #22c55e;
+            color: white;
+            border-radius: 10px;
         }
 
         .btn-edit {
-            background: #ffe08a;
-            color: #5c4300;
-            border: none;
-            border-radius: 10px;
-            padding: 6px 14px;
-            font-weight: 600;
-        }
-
-        .btn-edit:hover {
-            background: #ffd15a;
+            background: #84cc16;
+            color: white;
         }
 
         .btn-delete {
-            background: #ffb4b4;
-            color: #7a1f1f;
-            border: none;
-            border-radius: 10px;
-            padding: 6px 14px;
-            font-weight: 600;
-        }
-
-        .btn-delete:hover {
-            background: #ff8d8d;
-        }
-
-        th, td {
-            vertical-align: middle;
-        }
-
-        .table-bordered>:not(caption)>*>* {
-            border-color: #d8eadb;
+            background: #dc2626;
+            color: white;
         }
     </style>
 
@@ -116,19 +58,17 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#">
-                🌿 Sistem E-Bengkel
+                Sistem E-Bengkel
             </a>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container mt-5">
 
-        <div class="main-card">
+        <div class="card-box">
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="title">
-                    Daftar Servis Kendaraan
-                </h2>
+            <div class="d-flex justify-content-between mb-4">
+                <h2>Daftar Servis Kendaraan</h2>
 
                 <a href="/kendaraan/create" class="btn btn-add">
                     + Tambah Kendaraan
@@ -144,7 +84,6 @@
                         <th>Nama Pemilik</th>
                         <th>Merk Kendaraan</th>
                         <th>Keluhan</th>
-                        <th width="180">Aksi</th>
                     </tr>
                 </thead>
 
@@ -158,28 +97,6 @@
                         <td>{{ $item->nama_pemilik }}</td>
                         <td>{{ $item->merk_kendaraan }}</td>
                         <td>{{ $item->keluhan }}</td>
-
-                        <td class="d-flex gap-2">
-
-                            <a href="/kendaraan/{{ $item->id }}/edit"
-                                class="btn btn-edit btn-sm">
-                                Edit
-                            </a>
-
-                            <form action="/kendaraan/{{ $item->id }}" method="POST"
-                                onsubmit="return confirm('Hapus kendaraan dari antrean?')">
-
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit"
-                                    class="btn btn-delete btn-sm">
-                                    Hapus
-                                </button>
-
-                            </form>
-
-                        </td>
                     </tr>
 
                     @endforeach
